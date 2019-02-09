@@ -10,7 +10,7 @@ All commands start with `unleashprint` and are sent to proxy channel (`/8`)
   - If `argument` is given, prints last `argument` amount of unleashes
     - Example: `/8 unleashprint last 2` will print last 2 unleashes
 - `toggle`/`mode` `<optional argument>`
-  - Changes mode of tracking unleashes
+  - Changes mode of tracking skills in unleash
   - Valid modes: `skill`, `damage`, `both`
   - Default mode is `damage`
   - If no argument, shows current mode
