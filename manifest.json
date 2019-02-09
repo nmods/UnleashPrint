@@ -1,0 +1,12 @@
+{
+	"files": {
+		"index.js": "ba310c14ecccebde27b46cf27bc1792dee6c6adecf72b0e6577d278ce0efe57c",
+		"module.json": "345e9aac9506aa12080b01c8235a50f8032057494044581f6e6dd4018eeaba75"
+	},
+	"defs": {
+		"C_START_SKILL": 7,
+		"S_ABNORMALITY_BEGIN": 3,
+		"S_ABNORMALITY_END": 1,
+		"S_EACH_SKILL_RESULT": 12
+	}
+}

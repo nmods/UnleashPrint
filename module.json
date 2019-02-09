@@ -1,0 +1,7 @@
+{
+    "disableAutoUpdate": false,
+    "name": "Unleash print",
+    "author": "NMods",
+    "description": "prints rotation used in unleash after a few seconds",
+    "servers": ["https://raw.githubusercontent.com/nmods/UnleashPrint/master/"]
+}
