@@ -44,6 +44,42 @@ module.exports = function UnleashPrint(mod) {
 					command.message('Valid arguments for unleashprint mode: both, skill, damage')
 				}
 				break
+			case 'raw':
+				if (arg2 == 'raw') {
+					console.log(JSON.stringify(unleashes, null, 4))
+				} else {
+					for (let unleash of unleashes) {
+						console.log('Unleash at: ' + getTime(unleash.time))
+						//console.log(JSON.stringify(unleash, null, 4))
+						let d = true
+						for (let array of [unleash.damages, unleash.skills]) {
+							console.log("\n" + d ? 'DAMAGES' : 'SKILLS')
+							d = !d
+							for (let skill of array) {
+								let skillname = ''
+								switch (skill.group) {
+									case 34:
+										skillname = 'DEXTER'
+										break
+									case 35:
+										skillname = 'SINISTR'
+										break
+									case 36:
+										skillname = 'RAMPAGE'
+										break
+									case 37:
+										skillname = 'BEAST'
+										break
+									default:
+										skillname = 'OTHER'
+										break
+								}
+								console.log(skill.time + '\t' + skillname + '\t' + skill.group + '-' + skill.sub)
+							}
+						}
+					}
+				}
+				break
 			default:
 				command.exec('unleashprint last')
 				return
@@ -59,13 +95,13 @@ module.exports = function UnleashPrint(mod) {
 		}
 
 	});
-	mod.hook('S_EACH_SKILL_RESULT', 12, DEFAULT_HOOK_SETTINGS, (event) => {
-		if (!enabled || !inUnleash || !mod.game.me.is(event.source) || event.damage == 0) return
+	mod.hook('S_EACH_SKILL_RESULT', 14, DEFAULT_HOOK_SETTINGS, (event) => {
+		if (!enabled || !inUnleash || !mod.game.me.is(event.source) || event.value == 0) return
 		let data = skillInfo(event.skill.id)
 		if ([34, 35, 36, 37].includes(data.group)) {
 			data.time = Date.now() - unleashes[currentUnleash].time
 			unleashes[currentUnleash].damages.push(data)
-			unleashes[currentUnleash].totalDamage += Number(event.damage)
+			unleashes[currentUnleash].totalDamage += Number(event.value)
 		}
 	});
 
